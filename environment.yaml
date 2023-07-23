@@ -1,0 +1,11 @@
+name: copilot_priority
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+    - pandas==2.0
+    - Faker
+    - pyarrow
+    - click
