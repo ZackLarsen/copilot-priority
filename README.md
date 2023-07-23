@@ -42,6 +42,7 @@ python generate_patients.py --help
 
 ## Input data
 - patient_id
+- current_clinical_risk
 - has_high_acuity
 - has_moderate_acuity
 - has_severe_disease
