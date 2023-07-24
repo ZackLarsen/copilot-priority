@@ -62,3 +62,28 @@ risk_hierarchy = {
     "has_moderate_disease": 4
 }
 ```
+
+## Number of patients alowed to switch from one risk level to another
+
+```python
+risk_change_limit = 100
+```
+
+## Exceptions that remove a patient from the triage queue
+
+```python
+exceptions = [
+    "needs_stabilization",
+    "has_been_triaged"
+]
+```
+
+## Risk level percentages (percent of patient population that should be in each risk level)
+
+```python
+risk_level_percentages = {
+    "High": 0.1,
+    "Moderate": 0.3,
+    "Low": 0.6
+}
+```

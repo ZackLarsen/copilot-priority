@@ -14,6 +14,27 @@ import pandas as pd
 
 from priority_classes import Hospital, Patient
 
+
+# Define inputs here
+
+risk_hierarchy = {
+    "has_high_acuity": 1,
+    "has_moderate_acuity": 2,
+    "has_severe_disease": 3,
+    "has_moderate_disease": 4
+}
+
+risk_change_limit = 100
+
+risk_level_percentages = {
+    "High": 0.1,
+    "Moderate": 0.3,
+    "Low": 0.6
+}
+
+
+# Load data here and summarize it
+
 print('*'*50, '\n'*2, 'Patient data summary:', '\n'*2, '*'*50)
 
 patient_data = pd.read_parquet('data/patients.parquet', 
@@ -32,19 +53,8 @@ def create_patients_from_parquet(file_path: str) -> list[Patient]:
 
 patients = create_patients_from_parquet("data/patients.parquet")
 
+print(f"# of patients to triage: {len(patients)}", '\n'*2)
 
-print(f"# of patients to triage:{len(patients)}", '\n'*2)
-
-
-
-# Define hierarchy here
-
-risk_hierarchy = {
-    "has_high_acuity": 1,
-    "has_moderate_acuity": 2,
-    "has_severe_disease": 3,
-    "has_moderate_disease": 4
-}
 
 
 # Enqueue patients here using the risk_hierarchy by 
@@ -87,4 +97,3 @@ while not patient_priority_queue.empty():
 print("# Patients in operating rooms:", len([patient.patient_id for patient in hospital.operating_rooms]))
 print("# Patients in private rooms:", len([patient.patient_id for patient in hospital.private_rooms]))
 print("# Patients in waiting area:", len([patient.patient_id for patient in hospital.waiting_area]))
-print("# Patients waiting for a room:", len([patient.patient_id for patient in hospital.waiting_patients]))

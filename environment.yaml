@@ -9,3 +9,8 @@ dependencies:
     - Faker
     - pyarrow
     - click
+    - ipykernel
+    - jupyter
+    - deltalake
+    - seaborn
+    - matplotlib

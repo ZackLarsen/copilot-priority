@@ -28,18 +28,22 @@ def create_patient_dataframe(n: int, seed: Optional[int]):
 
     patient_data = {
         "patient_name": [faker.name() for _ in range(n)],
-        "patient_id": [faker.unique.random_number(digits=5, fix_len=True) for _ in range(n)],
+        "patient_id": [faker.unique.random_number(digits=9, fix_len=True) for _ in range(n)],
         "patient_age": [faker.random_int(min=1, max=100) for _ in range(n)],
         "patient_gender": [faker.random_element(elements=('Male', 'Female')) for _ in range(n)],
         "current_clinical_risk": [faker.random_element(elements=('High', 'Moderate', 'Low', '')) for _ in range(n)],
-        "has_high_acuity": [faker.boolean(chance_of_getting_true=25) for _ in range(n)],
+        "has_high_acuity": [faker.boolean(chance_of_getting_true=10) for _ in range(n)],
         "has_moderate_acuity": [faker.boolean(chance_of_getting_true=25) for _ in range(n)],
-        "has_severe_disease": [faker.boolean(chance_of_getting_true=25) for _ in range(n)],
+        "has_severe_disease": [faker.boolean(chance_of_getting_true=10) for _ in range(n)],
         "has_moderate_disease": [faker.boolean(chance_of_getting_true=25) for _ in range(n)],
+        "needs_stabilization": [faker.boolean(chance_of_getting_true=25) for _ in range(n)],
     }
 
     df = pd.DataFrame(patient_data)
     df.to_parquet("data/patients.parquet", index=False)
+    
+    # Here we are writing out as a deltaleake file:
+    df.to_parquet("data/patients.delta", index=False)
 
 if __name__ == "__main__":
     create_patient_dataframe()
